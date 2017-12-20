@@ -1,0 +1,37 @@
+.accordion-box {
+  box-sizing: border-box;
+}
+
+.accordion-item {
+  background: #fff;
+  .accordion-item-hd {
+    position: relative;
+    padding: 10px;
+    .flex();
+    .line(bottom, #ccc);
+    .justify-content(space-between);
+    .align-items(center);
+    &:active {
+      background-color: #ccc;
+    }
+    .icon {
+      font-size: 16px;
+    }
+  }
+
+  .accordion-item-bd {
+    max-height: 0;
+    overflow: hidden;
+    color: #888;
+    -webkit-transition-property: max-height;
+    transition-property: max-height;
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+
+    .accordion-item-unfold& {
+      height: auto;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+  }
+}

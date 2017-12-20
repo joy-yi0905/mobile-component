@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html lang=en> <head> <meta charset=UTF-8> <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"> <title>date-picker</title> <link href="css/mc.min.css" rel="stylesheet"><script type="text/javascript" src="zepto.min.js"></script><script type="text/javascript" src="mc.min.js"></script></head> <body> <div id=root> <h3 class=ui-title><span>date-picker - 日期 （当前时间）</span></h3> <div class=content-box> <input type=text class=input-date placeholder=请选择日期 /> </div> <h3 class=ui-title><span>date-picker - 日期 + 时间 (隐藏头部)</span></h3> <div class=content-box> <input type=text class=input-date-time placeholder=请选择日期时间 /> </div> <h3 class=ui-title><span>date-picker - 日期 + 时间 (设置默认日期 2015-05-01、且日期只显示三行)</span></h3> <div class=content-box> <input type=text class=input-date-custom placeholder=请选择日期时间 /> </div> </div> <script> mc.datePicker('.input-date', {
+  yearCols: [2015, 2016, 2017, 2018],
+  callback: (res) => {
+    console.log(res);
+  }
+});
+
+mc.datePicker('.input-date-time', {
+  titleDisplay: false,
+  type: 'date-time'
+});
+
+mc.datePicker('.input-date-custom', {
+  date: '2015-05-01',
+  contentPickerItemShowNum: 3
+}); </script> </body> </html>
