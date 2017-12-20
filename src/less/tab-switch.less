@@ -1,0 +1,31 @@
+.tab-group {
+  &.tab-group-slide {
+    overflow: hidden;
+  }
+
+  .tabs {
+    .flex();
+    .transition(0.3s transform);
+  }
+
+  .tab {
+    display: none;
+    .tab-group-slide& {
+      display: block;
+      width: 100%;
+      -webkit-flex-shrink: 0;
+      -ms-flex: 0 0 auto;
+      flex-shrink: 0;
+    }
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.tab-link {
+  &.active {
+    color: #fff;
+    background: @activeColor;
+  }
+}

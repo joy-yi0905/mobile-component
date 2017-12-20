@@ -1,0 +1,233 @@
+@font-face {font-family: "iconfont";
+  src: url('../font/iconfont.eot?t=1502379075152'); /* IE9*/
+  src: url('../font/iconfont.eot?t=1502379075152#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/iconfont.woff?t=1502379075152') format('woff'), /* chrome, firefox */
+  url('../font/iconfont.ttf?t=1502379075152') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../font/iconfont.svg?t=1502379075152#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+// .iconfont {
+//   font-family:"iconfont" !important;
+//   font-size:16px;
+//   font-style:normal;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }
+
+.icon {
+  position: relative;
+  vertical-align: middle;
+  margin: 0 3px;
+
+  font-family: "iconfont" !important;
+  font-size: 26px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.icon-success {
+    &::after {
+      content: "\e657";
+    }
+  }
+  &.icon-error {
+    &::after {
+      content: "\e659";
+    }
+  }
+  &.icon-info {
+    &::after {
+      content: "\e6e5";
+    }
+  }
+  &.icon-warn {
+    &::after {
+      content: "\e663";
+    }
+  }
+  &.icon-waiting {
+    &::after {
+      content: "\e65f";
+    }
+  }
+  &.icon-loading {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    -webkit-animation: loading-rotate 1s steps(12,end) infinite;
+    animation: loading-rotate 1s steps(12,end) infinite;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%20120%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%3E%3Cdefs%3E%3Cline%20id%3D'l'%20x1%3D'60'%20x2%3D'60'%20y1%3D'7'%20y2%3D'27'%20stroke%3D'%236c6c6c'%20stroke-width%3D'11'%20stroke-linecap%3D'round'%2F%3E%3C%2Fdefs%3E%3Cg%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(30%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(60%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(90%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(120%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(150%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.37'%20transform%3D'rotate(180%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.46'%20transform%3D'rotate(210%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.56'%20transform%3D'rotate(240%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.66'%20transform%3D'rotate(270%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.75'%20transform%3D'rotate(300%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.85'%20transform%3D'rotate(330%2060%2C60)'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-size: 100%;
+    &&-white {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%20120%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%3E%3Cdefs%3E%3Cline%20id%3D'l'%20x1%3D'60'%20x2%3D'60'%20y1%3D'7'%20y2%3D'27'%20stroke%3D'%23ffffff'%20stroke-width%3D'11'%20stroke-linecap%3D'round'%2F%3E%3C%2Fdefs%3E%3Cg%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(30%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(60%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(90%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(120%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(150%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.37'%20transform%3D'rotate(180%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.46'%20transform%3D'rotate(210%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.56'%20transform%3D'rotate(240%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.66'%20transform%3D'rotate(270%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.75'%20transform%3D'rotate(300%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.85'%20transform%3D'rotate(330%2060%2C60)'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+    }
+    &&-dot {
+      width: auto;
+      height: auto;
+      background: none;
+      &::after {
+        content: "\e647";
+      }
+    }
+  }
+
+  &.icon-search {
+    &::after {
+      content: "\e65c";
+    }
+  }
+  &.icon-cancel {
+    &::after {
+      content: "\e646";
+    }
+  }
+  &.icon-download {
+    &::after {
+      content: "\e703";
+    }
+  }
+  &.icon-back-top {
+    &::after {
+      content: "\e69e";
+    }
+  }
+  &.icon-refresh-arrow {
+    &::after {
+      content: "\e72d";
+    }
+  }
+  &.icon-add {
+    &::after {
+      content: "\e767";
+    }
+  }
+  &.icon-reduce {
+    &::after {
+      content: "\e768";
+    }
+  }
+  &.icon-unfold {
+    &::after {
+      content: "\e661";
+    }
+  }
+  &.icon-fold {
+    &::after {
+      content: "\e6de";
+    }
+  }
+  &.icon-back {
+    &::after {
+      content: "\e679";
+    }
+  }
+  &.icon-forward {
+    &::after {
+      content: "\e6a3";
+    }
+  }
+  &.icon-pwd-open {
+    &::after {
+      content: "\e73d";
+    }
+  }
+  &.icon-pwd-close {
+    &::after {
+      content: "\e7b2";
+    }
+  }
+  &.icon-appreciate {
+    &::after {
+      content: "\e644";
+    }
+  }
+  &.icon-appreciate-fill {
+    &::after {
+      content: "\e6e3";
+    }
+  }
+  &.icon-love {
+    &::after {
+      content: "\e669";
+    }
+  }
+  &.icon-love-fill {
+    &::after {
+      content: "\e668";
+    }
+  }
+  &.icon-star {
+    &::after {
+      content: "\e64c";
+    }
+  }
+  &.icon-star-fill {
+    &::after {
+      content: "\e64b";
+    }
+  }
+
+  &.icon-home {
+    &::after {
+      content: "\e6b8";
+    }
+  }
+  &.icon-setting {
+    &::after {
+      content: "\e68a";
+    }
+  }
+  &.icon-username {
+    &::after {
+      content: "\e736";
+    }
+  }
+  &.icon-password {
+    &::after {
+      content: "\e6c0";
+    }
+  }
+  &.icon-message {
+    &::after {
+      content: "\e6bc";
+    }
+  }
+  &.icon-cart {
+    &::after {
+      content: "\e6af";
+    }
+  }
+  &.icon-location {
+    &::after {
+      content: "\e651";
+    }
+  }
+  &.icon-calendar {
+    &::after {
+      content: "\e74a";
+    }
+  }
+  &.icon-card {
+    &::after {
+      content: "\e6ee";
+    }
+  }
+  &.icon-redpacket {
+    &::after {
+      content: "\e6e0";
+    }
+  }
+}
+
+
+@-webkit-keyframes loading-rotate {
+  100% {
+    -webkit-transform:rotate(360deg);
+  }
+}
+
+@keyframes loading-rotate {
+  100% {
+    transform:rotate(360deg);
+  }
+}

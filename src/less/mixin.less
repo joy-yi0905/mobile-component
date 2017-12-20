@@ -1,0 +1,99 @@
+.clearfix {
+  clear: both;
+}
+
+.transform(@para) {
+  -webkit-transform: @para;
+  transform: @para;
+}
+
+.transform-origin(@para) {
+  -webkit-transform-origin: @para;
+  transform-origin: @para;
+}
+
+.transition(@para) {
+  -webkit-transition: @para;
+  transition: @para;
+}
+
+.flex() {
+  display: -webkit-box;
+  display: -ms-flex-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.justify-content(@para: space-between) {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: @para;
+  justify-content: @para;
+}
+
+.align-items(@para) {
+  -webkit-box-align: @para;
+  -ms-flex-align: @para;
+  -webkit-align-items: @para;
+  align-items: @para;
+}
+
+.line(@position, @color, @scale: .5) when (@position = top) {
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background-color: @color;
+    .transform(scaleY(@scale));
+  }
+}
+
+.line(@position, @color, @scale: .5) when (@position = bottom) {
+  &::after {
+    position: absolute;
+    left: 0;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background-color: @color;
+    .transform(scaleY(@scale));
+  }
+}
+
+.line(@position, @color, @scale: .5) when (@position = left) {
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    width: 1px;
+    height: 100%;
+    content: '';
+    background-color: @color;
+    .transform(scaleY(@scale));
+  }
+}
+
+.line(@position, @color, @scale: .5) when (@position = right) {
+  &::after {
+    position: absolute;
+    left: auto;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    width: 1px;
+    height: 100%;
+    content: '';
+    background-color: @color;
+    .transform(scaleY(@scale));
+  }
+}

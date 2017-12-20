@@ -1,0 +1,43 @@
+.toolbar {
+  display: -webkit-box;
+  display: flex;
+  min-height: 30px;
+  padding: 5px 0;
+  background: #eee;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  .item {
+    text-align: center;
+    flex: 1;
+    &.active {
+      a {
+        color: @activeColor;
+      }
+    }
+    a {
+      display: block;
+      .icon {
+        display: block;
+        font-size: 22px;
+        line-height: 1;
+        .badge {
+          position: absolute;
+          left: 50%;
+          top: -2px;
+          min-width: 16px;
+          height: 16px;
+          margin-left: 3px;
+          padding: 0 3px;
+          color: #fff;
+          font-size: 12px;
+          line-height: 16px;
+          text-align: center;
+          background: #f54d4f;
+          box-sizing: border-box;
+          border-radius: 16px;
+        }
+      }
+    }
+  }
+}

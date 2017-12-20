@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <title>imgUpload</title>
+</head>
+<body>
+
+<div id="root">
+
+
+  <h3 class="ui-title"><span>imgUpload-单个</span></h3>
+
+  <div class="content-box">
+    <div class="upload">
+      <div class="upload-item upload-item01">
+        <!-- <input type="file" />
+        <div class="upload-tips">
+          <i class="icon icon-add"></i>
+          <div class="upload-tips-desc">添加图片</div>
+        </div> -->
+      </div>
+      <div class="upload-item upload-item02">
+        <!-- <input type="file" />
+        <div class="upload-content">
+          <i class="icon icon-cancel"></i>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <h3 class="ui-title"><span>imgUpload-多个</span></h3>
+
+  <div class="content-box">
+    <div class="upload">
+      <a href="javaScript:;" class="button button-icon button-fill button-round button-upload"><i class="icon icon-back-top"></i><span>上传多个</span></a>
+    </div>
+    <div>指定多图容器</div>
+    <div class="img-container"></div>
+  </div>
+
+
+</div>
+
+<script>
+mc.imgUpload('.upload-item01', {
+  uploadTipsDesc: '上传jpg图片',
+  accept: 'image/jpeg'
+});
+
+mc.imgUpload('.upload-item02', {
+  callback: function(imgInfo) {
+    console.log(imgInfo);
+  }
+});
+
+mc.imgUpload('.button-upload', {
+  multiple: true,
+  imgContainer: '.img-container',
+  callback: function(imgInfo) {
+    console.log(imgInfo);
+  }
+});
+</script>
+</body>
+</html>

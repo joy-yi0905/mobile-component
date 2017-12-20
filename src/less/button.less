@@ -1,0 +1,70 @@
+.button {
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid @activeColor;
+  margin-bottom: 10px;
+  padding: 0 15px;
+  color: @activeColor;
+  font-size: 14px;
+  line-height: 2;
+  text-align: center;
+  &:active {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  &-big {
+    display: block;
+    font-size: 16px;
+    line-height: 2.65;
+  }
+  &-round {
+    border-radius: 6px;
+  }
+  &-fill {
+    color: #fff;
+    background: @activeColor;
+  }
+  &.disabled {
+    opacity: .5;
+    cursor: default;
+  }
+  &-icon {
+    line-height: 1.6;
+    .icon {
+      font-size: 18px;
+    }
+  }
+  .button-row & {
+    flex: 1;
+    border-left-width: 0;
+    &:first-child {
+      border-left-width: 1px;
+    }
+    .button-row-round& {
+      &:first-child {
+        border-radius: 5px 0 0 5px;
+      }
+      &:last-child {
+        border-radius: 0 5px 5px 0;
+      }
+      &:first-child {
+        &:last-child {
+          border-radius: 5px;
+        }
+      }
+    }
+    .button-row-gap& {
+      .button-row-round& {
+        &.button {
+          border-radius: 6px;
+        }
+      }
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.button-row {
+  .flex();
+}

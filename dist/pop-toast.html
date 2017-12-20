@@ -1,0 +1,11 @@
+<!DOCTYPE html> <html lang=en> <head> <meta charset=UTF-8> <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"> <title>pop-toast</title> <link href="css/mc.min.css" rel="stylesheet"><script type="text/javascript" src="zepto.min.js"></script><script type="text/javascript" src="mc.min.js"></script></head> <body> <div id=root> <h3 class=ui-title><span>toast</span></h3> <div class=content-box> <p><a href=javascript:; class="button button-toast">显示toast</a></p> <p><a href=javascript:; class="button button-toast-callback">显示toast-回调</a></p> </div> </div> <script> $('.button-toast').on('click', function() {
+  mc.toast('操作成功');
+});
+
+$('.button-toast-callback').on('click', function() {
+  let _this = $(this);
+
+  mc.toast('操作成功', function() {
+    _this.addClass('button-fill');
+  });
+}); </script> </body> </html>
