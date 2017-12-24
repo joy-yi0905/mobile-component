@@ -1,7 +1,5 @@
 import './less/mc.less';
 
-let mc = {};
-
 import {
   toast,
   showLoader,
@@ -24,7 +22,7 @@ import countdown from './js/countdown';
 
 import init from './js/init';
 
-mc = {
+window.mc = {
   toast,
   showLoader,
   hideLoader,
@@ -39,7 +37,5 @@ mc = {
   slide,
   countdown
 };
-
-window.mc = mc;
 
 init();
