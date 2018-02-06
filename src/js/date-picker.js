@@ -1,5 +1,7 @@
 ;(function($) {
 
+  const dateRegExp = /^\d{4}(-\d{2}){2}( \d{2}:\d{2})?$/;
+
   const isSupportTouch = (function() {
     return !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
   })();
@@ -37,11 +39,11 @@
     },
 
     select: {
-      YYYY: '',
-      MM: '',
-      DD: '',
-      hh: '',
-      mm: ''
+      YYYY: padZero(now.getFullYear(), 4),
+      MM: padZero(now.getMonth() + 1),
+      DD: padZero(now.getDate()),
+      hh: padZero(now.getHours()),
+      mm: padZero(now.getMinutes()),
     }
   };
 
@@ -67,6 +69,30 @@
     const eleBottom = ele.get(0).getBoundingClientRect().bottom;
 
     return !(screenH - eleBottom < coverH + 10);
+  }
+
+  function createMask (){
+    let maskEle = $('<div class="pop-mask">');
+
+    $('.pop-mask').remove();
+
+    maskEle.appendTo('body');
+  }
+
+  function showMask (isTransparent){
+    createMask();
+
+    setTimeout(() => {
+      $('.pop-mask').addClass(isTransparent ? 'pop-mask-in pop-mask-transparent' : 'pop-mask-in');
+    }, 0);
+  }
+
+  function hideMask (isDelay) {
+    $('.pop-mask').removeClass('pop-mask-in pop-mask-transparent');
+
+    setTimeout(() => {
+      $('.pop-mask').remove();
+    }, isDelay ? 0 : 300);
   }
 
   function getMonthDays(year, month) {
@@ -117,7 +143,11 @@
 
     datePickerEle
     .html(
-      `<div class="date-picker-title">
+      `<div class="date-picker-toolbar">
+        <a class="cancel" href="javascript:;">取消</a>
+        <a class="confirm" href="javascript:;">确认</a>
+      </div>
+      <div class="date-picker-title">
         <div class="col-group"></div>
       </div>
       <div class="date-picker-content">
@@ -150,18 +180,21 @@
     this.input = input;
     this.opts = $.extend({}, defaults, options);
 
-    this.showPicker(this);
+    this.showPicker();
   }
 
   $.extend(DatePicker.prototype, {
-    showPicker: (env) => { console.log(env);
+    showPicker() {
+      const that = this;
 
-      let input = env.input,
+      let input = that.input,
         inputId = input.data('id');
+
+      let inputVal = '';
 
       let datePickerEle;
 
-      let {type, titleDisplay, yearCols, monthCols, dayCols, hourCols, minuteCols} = env.opts;
+      let {type, titleDisplay, yearCols, monthCols, dayCols, hourCols, minuteCols, date} = that.opts;
 
       let colClass = 'col-' + (type === 'date' ? '33' : '20');
 
@@ -176,17 +209,25 @@
       let defaultDateArr = [],
         defaultDateColArr = [];
 
-      if (env.opts.contentPickerItemShowNum % 2 === 0) {
+      if (that.opts.contentPickerItemShowNum % 2 === 0) {
         return alert('显示行数必须为奇数！');
       }
 
-      env.setInputVal(); // set input value
+      showMask();
 
-      defaultDateArr = input.val().split(' ');
+      if (input.val() && dateRegExp.test(input.val())) {
+        inputVal = input.val();
+      } else {
+        inputVal = date;
+      }
+
+      defaultDateArr = inputVal.split(' ');
 
       defaultDateColArr = defaultDateArr[1] ?
         defaultDateArr[0].split('-').concat(defaultDateArr[1].split(':')) :
         defaultDateArr[0].split('-');
+
+      this.setSelectDate(defaultDateColArr);
 
       if (picker.display) {
         if (inputId === picker.id) { // same input
@@ -194,7 +235,7 @@
         } else {
           isSwitchInput = true;
 
-          env.hidePicker($(picker.datePickerEleClass));
+          that.hidePicker($(picker.datePickerEleClass));
 
           datePickerEle = createPicker();
         }
@@ -213,12 +254,12 @@
         pickerTitleColArr.length = pickerContentColArr.length = defaultDateColArr.length = 3;
       }
 
-      titleDisplay && env.createPickerTitleCol(datePickerEle, colClass, pickerTitleColArr);
+      titleDisplay && that.createPickerTitleCol(datePickerEle, colClass, pickerTitleColArr);
 
-      env.createPickerContentCol(datePickerEle, colClass, pickerTitleColArr, pickerContentColArr);
+      that.createPickerContentCol(datePickerEle, colClass, pickerTitleColArr, pickerContentColArr);
 
       $.each(defaultDateColArr, (index, item) => {
-        env.setPickerGroupPos(datePickerEle, index, item, env);
+        that.setPickerGroupPos(datePickerEle, index, item, that);
       });
 
       datePickerEle
@@ -235,7 +276,7 @@
         $(document).off();
 
         $(document).on(eventStart, () => {
-          env.hidePicker(datePickerEle);
+          that.hidePicker(datePickerEle);
         });
       }, 10);
 
@@ -244,26 +285,38 @@
       datePickerEle.find(picker.contentColClass).on(eventStart, function(e) {
         dragPickerCol = $(this);
 
-        env.handleStart(e, dragPickerCol);
+        that.handleStart(e, dragPickerCol);
 
         $(document).off();
 
         $(document).on(eventStart, () => {
-          env.hidePicker(datePickerEle);
+          that.hidePicker(datePickerEle);
         });
 
         $(document).on(eventMove, function(e) {
-          env.handleMove(e, dragPickerCol);
+          that.handleMove(e, dragPickerCol);
         });
 
         $(document).on(eventEnd, function(e) {
-          env.handleEnd(e, dragPickerCol);
+          that.handleEnd(e, dragPickerCol);
         });
+      });
+
+      let datePickerCancel = datePickerEle.find('.cancel'),
+        datePickerConfirm = datePickerEle.find('.confirm');
+
+      datePickerCancel.on(eventStart, () => {
+        this.hidePicker(datePickerEle);
+      });
+
+      datePickerConfirm.on(eventStart, () => {
+        this.setInputVal(true);
+        this.hidePicker(datePickerEle);
       });
 
     },
 
-    hidePicker: function(datePickerEle) {
+    hidePicker(datePickerEle) {
 
       picker.display = false;
 
@@ -271,12 +324,14 @@
 
       datePickerEle.removeClass('in');
 
+      hideMask();
+
       setTimeout(() => {
         datePickerEle.remove();
       }, 400);
     },
 
-    createPickerTitleCol: (datePickerEle, colClass, pickerTitleColArr) => {
+    createPickerTitleCol(datePickerEle, colClass, pickerTitleColArr) {
       let pickerTitleColHtml = '';
 
       $.each(pickerTitleColArr, (index, item) => {
@@ -286,7 +341,7 @@
       datePickerEle.find('.date-picker-title .col-group').html(pickerTitleColHtml);
     },
 
-    createPickerContentCol: function(datePickerEle, colClass, pickerTitleColArr, pickerContentColArr) {
+    createPickerContentCol(datePickerEle, colClass, pickerTitleColArr, pickerContentColArr) {
       let pickerContentColHtml = '';
 
       $.each(pickerContentColArr, (index, item) => {
@@ -306,15 +361,15 @@
       .html(pickerContentColHtml);
     },
 
-    setPickerGroupPos: function(datePickerEle, index, dateItem, env) {
+    setPickerGroupPos(datePickerEle, index, dateItem) {
       datePickerEle.find('.col').eq(index).find('.picker-item').each((index, item) => {
         if ($(item).html() === dateItem) {
-          env.setPickerGroupAttr($(item).parent(), -(index - Math.floor(this.opts.contentPickerItemShowNum / 2))*this.opts.contentPickerItemH);
+          this.setPickerGroupAttr($(item).parent(), -(index - Math.floor(this.opts.contentPickerItemShowNum / 2))*this.opts.contentPickerItemH);
         }
       });
     },
 
-    setPickerGroupAttr: (pickerGroup, eleOffsetY) => {
+    setPickerGroupAttr(pickerGroup, eleOffsetY) {
       pickerGroup.css({
         '-webkit-transform': `translateY(${eleOffsetY}px)`,
         'transform': `translateY(${eleOffsetY}px)`
@@ -322,7 +377,7 @@
       .data('offsetY', `${eleOffsetY}`);
     },
 
-    setInputVal: function(isSelect) {
+    setInputVal(isSelect) {
 
       let input = this.input,
         inputVal = '';
@@ -335,8 +390,13 @@
         if (type === 'date-time') {
           inputVal += ' ' + dateGroup.select.hh + ':' + dateGroup.select.mm;
         }
+
+        input.val(inputVal);
+
+        this.opts.callback(inputVal);
+
       } else {
-        if (input.val()) {
+        if (input.val() && dateRegExp.test(input.val())) {
           inputVal = input.val();
         } else {
           inputVal = date;
@@ -352,19 +412,19 @@
           dateArr = dateArr[0].split('-').concat(dateArr[1].split(':'));
         }
 
-        dateGroup.select.YYYY = dateArr[0];
-        dateGroup.select.MM = dateArr[1];
-        dateGroup.select.DD = dateArr[2];
-        dateGroup.select.hh = dateArr[3];
-        dateGroup.select.mm = dateArr[4];
+        this.setSelectDate(dateArr);
       }
-
-      input.val(inputVal);
-
-      this.opts.callback(inputVal);
     },
 
-    updateMonthDays: function(year, month) {
+    setSelectDate(dateArr) {
+      dateGroup.select.YYYY = dateArr[0];
+      dateGroup.select.MM = dateArr[1];
+      dateGroup.select.DD = dateArr[2];
+      dateGroup.select.hh = dateArr[3];
+      dateGroup.select.mm = dateArr[4];
+    },
+
+    updateMonthDays(year, month) {
       let days = getMonthDays(year, month);
 
       let DDpickerCol = $('.date-picker .col').eq(2);
@@ -396,7 +456,7 @@
       }
     },
 
-    handleStart: function(e, ele) {
+    handleStart(e, ele) {
 
       if (!isSupportTouch) drag.doing = true;
 
@@ -406,7 +466,7 @@
       drag.eleOffsetY = pickerGroup.data('offset-y') || 0;
     },
 
-    handleMove: function(e, ele) {
+    handleMove(e, ele) {
 
       if (!ele) return;
 
@@ -421,7 +481,7 @@
       this.setPickerGroupAttr(pickerGroup, moveOffset);
     },
 
-    handleEnd: function(e, ele) {
+    handleEnd(e, ele) {
 
       if (!ele) return;
 
@@ -469,8 +529,6 @@
       if (type === 'YYYY' || type === 'MM') {
         this.updateMonthDays(dateGroup.select.YYYY, dateGroup.select.MM);
       }
-
-      this.setInputVal(true);
     }
   });
 

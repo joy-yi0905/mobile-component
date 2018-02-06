@@ -1,10 +1,5 @@
 import './less/mc.less';
 
-<<<<<<< HEAD
-=======
-let mc = {};
-
->>>>>>> gh-pages
 import {
   toast,
   showLoader,
@@ -27,11 +22,7 @@ import countdown from './js/countdown';
 
 import init from './js/init';
 
-<<<<<<< HEAD
-window.mc = {
-=======
-mc = {
->>>>>>> gh-pages
+var mc = {
   toast,
   showLoader,
   hideLoader,
@@ -47,9 +38,6 @@ mc = {
   countdown
 };
 
-<<<<<<< HEAD
-=======
 window.mc = mc;
 
->>>>>>> gh-pages
 init();
