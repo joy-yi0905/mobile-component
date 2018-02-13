@@ -1,4 +1,4 @@
-function extend(source, target) {
+function extend(target, source) {
   for (let prop in source) {
     if (source.hasOwnProperty(prop)) {
       if (typeof target[prop] === 'undefined') {
@@ -10,19 +10,23 @@ function extend(source, target) {
   return target;
 }
 
-function fillZero(str, n = 2) {
+function padZero(str, n = 2) {
   str = '' + str;
 
-  while(str.length < n){
+  while (str.length < n) {
     str = '0' + str;
   }
 
   return str;
 }
 
+function isDateObject(date) {
+  return Object.prototype.toString.call(date) === '[object Date]';
+}
+
 const defaults = {
   begin: new Date(),
-  end: '2030/01/01',
+  end: new Date('2030/01/01'),
   timestamp: 0,
   isFormat: false,
   isMilliSecond: false,
@@ -37,7 +41,7 @@ const defaults = {
 
 class Countdown {
   constructor(params = {}) {
-    this.params = extend(defaults, params);
+    this.params = extend(params, defaults);
   }
 
   init() {
@@ -49,8 +53,8 @@ class Countdown {
     let mm = 0;
     let ss = 0;
     let ms = 0;
-    let begin = this.params.begin;
-    let end = this.params.end;
+    let begin = that.params.begin;
+    let end = that.params.end;
 
     let result = {};
 
@@ -98,9 +102,13 @@ class Countdown {
       if (that.params.timestamp) { // user custom timestamp
         that.remain = that.params.timestamp * (1000/multiple);
       } else {
-        begin = typeof begin === 'object' ? begin.getTime() : new Date(begin.replace(/-/g, '/')).getTime();
+        begin = isDateObject(begin)
+          ? begin.getTime()
+          : new Date(begin.replace(/-/g, '/')).getTime();
 
-        end = new Date(end.replace(/-/g, '/')).getTime();
+        end = isDateObject(end)
+          ? end.getTime()
+          : new Date(end.replace(/-/g, '/')).getTime();
 
         that.remain = Math.floor((end - begin) / multiple);
       }
@@ -114,7 +122,7 @@ class Countdown {
       }
     }
 
-    this.starting = true;
+    that.starting = true;
 
     const calculateTime = () => {
 
@@ -143,20 +151,20 @@ class Countdown {
 
       mm = Math.floor(getRemain(that.remain, 'hour') / secondNum.mm);
 
-      ss = that.params.isMilliSecond ?
-        Math.floor(getRemain(that.remain, 'minute') / secondNum.ss) :
-        Math.floor(getRemain(that.remain, 'minute') % secondNum.mm);
+      ss = that.params.isMilliSecond
+        ? Math.floor(getRemain(that.remain, 'minute') / secondNum.ss)
+        : Math.floor(getRemain(that.remain, 'minute') % secondNum.mm);
 
-      ms = that.params.isMilliSecond ?
-        (Math.floor(getRemain(that.remain, 'minute') % secondNum.ss) + '').substr(0, 2) :
-        '';
+      ms = that.params.isMilliSecond
+        ? (Math.floor(getRemain(that.remain, 'minute') % secondNum.ss) + '').substr(0, 2)
+        : '';
 
       if (that.params.isFormat) {
-        yyyy = fillZero(yyyy, 4);
-        dd = fillZero(dd);
-        hh = fillZero(hh);
-        mm = fillZero(mm);
-        ss = fillZero(ss);
+        yyyy = padZero(yyyy, 4);
+        dd = padZero(dd);
+        hh = padZero(hh);
+        mm = padZero(mm);
+        ss = padZero(ss);
       }
 
       result = {yyyy, dd, hh, mm, ss};
@@ -166,7 +174,7 @@ class Countdown {
       that.params.change && that.params.change(result);
     };
 
-    that.timer && clearInterval(this.timer);
+    that.timer && clearInterval(that.timer);
 
     that.timer = setInterval(calculateTime, interval);
 
@@ -184,6 +192,6 @@ class Countdown {
 
     this.starting = false;
   }
-};
+}
 
 module.exports = Countdown;

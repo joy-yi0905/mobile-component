@@ -1,4 +1,24 @@
-<!DOCTYPE html> <html> <head> <meta charset=utf-8> <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"> <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"> <title>slide-fullpage</title> <link href="css/mc.min.css" rel="stylesheet"><script type="text/javascript" src="zepto.min.js"></script><script type="text/javascript" src="mc.min.js"></script></head> <body> <div id=page> <div class=slide id=slide01></div> </div> <script> mc.slide('.slide#slide01', {
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>slide-fullpage</title>
+<link href="css/mc.min.css" rel="stylesheet"><script type="text/javascript" src="zepto.min.js"></script><script type="text/javascript" src="mc.min.js"></script></head>
+
+<body>
+
+<div id="page">
+
+  <div class="slide" id="slide01"></div>
+
+</div>
+
+<script>
+
+
+mc.slide('.slide#slide01', {
   dirType: 'vertical',
   autoplay: false,
   indicator: false,
@@ -56,4 +76,10 @@
             </div>`
     }
   ]
-}); </script> </body> </html>
+});
+
+
+</script>
+</body>
+
+</html>

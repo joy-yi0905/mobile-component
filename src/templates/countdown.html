@@ -10,7 +10,7 @@
 <div id="root">
 
 
-  <h3 class="ui-title"><span>默认</span></h3>
+  <h3 class="ui-title"><span>默认（距离：2030/01/01）</span></h3>
 
   <div class="content-box">
     <div id="box1"></div>
@@ -19,7 +19,7 @@
   </div>
 
 
-  <h3 class="ui-title"><span>自定义：格式化 + 毫秒</span></h3>
+  <h3 class="ui-title"><span>自定义：格式化 + 毫秒（距离：2018/06/01）</span></h3>
 
   <div class="content-box">
     <div id="box2"></div>
@@ -41,8 +41,11 @@
 
 <script>
 
+
 var Countdown = mc.countdown;
 
+
+// 默认（距离：2030/01/01）
 var c1 = new Countdown({
   change: function(res) {
     var str = '', num = 0, type = '年天时分秒';
@@ -68,7 +71,7 @@ document.getElementById('btn1').onclick = function() {
 };
 
 
-
+// 自定义：格式化 + 毫秒（距离：2018/06/01）
 var c2 = new Countdown({
   end: '2018/06/01',
   isFormat: true,
@@ -97,7 +100,7 @@ document.getElementById('btn2').onclick = function() {
 };
 
 
-
+// 自定义：时间戳 - 10秒倒计时
 var c3 = new Countdown({
   isMilliSecond: true,
   timestamp: 10,

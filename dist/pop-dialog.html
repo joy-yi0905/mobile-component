@@ -1,4 +1,47 @@
-<!DOCTYPE html> <html lang=en> <head> <meta charset=UTF-8> <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"> <title>dialog</title> <link href="css/mc.min.css" rel="stylesheet"><script type="text/javascript" src="zepto.min.js"></script><script type="text/javascript" src="mc.min.js"></script></head> <body> <div id=root> <h3 class=ui-title><span>dialog</span></h3> <div class=content-box> <p><a href=javascript:; class="button button-dialog-content">显示dialog-内容</a></p> <p><a href=javascript:; class="button button-dialog-title-content">显示dialog-标题+内容</a></p> <p><a href=javascript:; class="button button-dialog-button">显示dialog-自定义按钮</a></p> </div> </div> <script> $('.button-dialog-content').on('click', function() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <title>dialog</title>
+<link href="css/mc.min.css" rel="stylesheet"><script type="text/javascript" src="zepto.min.js"></script><script type="text/javascript" src="mc.min.js"></script></head>
+<body>
+
+<div id="root">
+
+
+  <h3 class="ui-title"><span>dialog</span></h3>
+
+  <div class="content-box">
+    <p><a href="javascript:;" class="button button-dialog-content">显示dialog-内容</a></p>
+    <p><a href="javascript:;" class="button button-dialog-title-content">显示dialog-标题+内容</a></p>
+    <p><a href="javascript:;" class="button button-dialog-button">显示dialog-自定义按钮</a></p>
+  </div>
+
+  <!-- <div class="pop-mask pop-mask-in"></div>
+
+  <div class="pop-dialog pop-dialog-in">
+    <div class="pop-dialog-content">
+      <div class="pop-dialog-top">
+        <h3 class="pop-dialog-title">title</h3>
+      </div>
+      <div class="pop-dialog-main">
+        Lorem Ipsum，也称乱数假文或者哑元文本， 是印刷及排版领域所常用的虚拟文字。
+      </div>
+    </div>
+    <div class="pop-dialog-extra">
+      <div class="button-row button-row-round">
+        <a href="javascript:;" class="button button-big">取消</a><a href="javascript:;" class="button button-big">确认</a>
+      </div>
+    </div>
+  </div> -->
+
+
+</div>
+
+<script>
+
+$('.button-dialog-content').on('click', function() {
   mc.showDialog('Lorem Ipsum，也称乱数假文或者哑元文本， 是印刷及排版领域所常用的虚拟文字。');
 });
 
@@ -30,4 +73,9 @@ $('.button-dialog-button').on('click', function() {
       }
     ]
   });
-}); </script> </body> </html>
+});
+
+
+</script>
+</body>
+</html>

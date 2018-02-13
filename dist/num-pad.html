@@ -1,1 +1,119 @@
-<!DOCTYPE html> <html lang=en> <head> <meta charset=UTF-8> <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"> <title>num-pad</title> <link href="css/mc.min.css" rel="stylesheet"><script type="text/javascript" src="zepto.min.js"></script><script type="text/javascript" src="mc.min.js"></script></head> <body> <div id=root> <style>body,html{margin:0;padding:0;font-family:"PingFang SC",PingHei,"HanHei SC",STHeitiSC-Light,"Hiragino Sans GB",STHeiti,Roboto,Noto,"Helvetica Neue",Helvetica,Arial,SimSun,sans-serif;background:#f3f4f6}::-webkit-input-placeholder{color:#aaa}::-moz-placeholder{color:#aaa}.input-box{position:relative;border:1px solid #d2d4d9;margin:10px;padding:5px;background:#fff;border-radius:5px;overflow:hidden}.input-number,.input-number03{width:100%;font-size:18px;line-height:30px;outline:0;border:none}.button{display:block;margin:15px 5%;text-align:center;color:#fff;line-height:2.815;text-decoration:none;background:#e33b26;border-radius:3px}.button:active{-webkit-tap-highlight-color:transparent;-webkit-tap-highlight-color:transparent}.button.disabled{opacity:.5}.button.button-add-content{display:inline-block;margin:10px;padding:1px 3px;line-height:2;font-size:12px;opacity:.8}p{padding-left:10px}</style> <h3 class=ui-title><span>num-pad-默认</span></h3> <div class=content-box> <div class=input-box> <input type=text placeholder="fill number, digit 2(default)" class="input-number input-number01"/> </div> </div> <h3 class=ui-title><span>num-pad（设置小数点后3位）</span></h3> <div class=content-box> <div class=input-box> <input type=text placeholder="fill number, digit 3" class="input-number input-number02"/> </div> </div> <h3 class=ui-title><span>num-pad（无样式输入框，设置小数点后5位）</span></h3> <div class=content-box> <input type=text placeholder="fill number, digit 2(default)" class=input-number-normal /> </div> </div> <script>mc.numPad(".input-number01"),mc.numPad(".input-number02",{digit:3,callback:function(n,c){console.log(n,c)}}),mc.numPad(".input-number-normal",{digit:5,border:"1px solid red",callback:function(n){console.log(n)}})</script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <title>num-pad</title>
+<link href="css/mc.min.css" rel="stylesheet"><script type="text/javascript" src="zepto.min.js"></script><script type="text/javascript" src="mc.min.js"></script></head>
+<body>
+
+<div id="root">
+
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "PingFang SC",PingHei,"HanHei SC",STHeitiSC-Light,"Hiragino Sans GB",STHeiti,Roboto,Noto,"Helvetica Neue",Helvetica,Arial,SimSun,sans-serif;
+    background: #f3f4f6;
+  }
+  ::-webkit-input-placeholder {
+    color: #aaa;
+  }
+  ::-moz-placeholder {
+    color: #aaa;
+  }
+  .input-box {
+    position: relative;
+    border: 1px solid #d2d4d9;
+    margin: 10px;
+    padding: 5px;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .input-number,
+  .input-number03 {
+    width: 100%;
+    font-size: 18px;
+    line-height: 30px;
+    outline: none;
+    border: none;
+  }
+  .button {
+    display: block;
+    margin: 15px 5%;
+    text-align: center;
+    color: #fff;
+    line-height: 2.815;
+    text-decoration: none;
+    background: #e33b26;
+    border-radius: 3px;
+  }
+  .button:active {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+  .button.disabled {
+    opacity: 0.5;
+  }
+  .button.button-add-content {
+    display: inline-block;
+    margin: 10px;
+    padding: 1px 3px;
+    line-height: 2;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+
+  p {
+    padding-left: 10px;
+  }
+  </style>
+
+  <h3 class="ui-title"><span>num-pad-默认</span></h3>
+
+  <div class="content-box">
+    <div class="input-box">
+      <input type="text" placeholder="fill number, digit 2(default)" class="input-number input-number01" />
+    </div>
+  </div>
+
+
+  <h3 class="ui-title"><span>num-pad（设置小数点后3位）</span></h3>
+
+  <div class="content-box">
+    <div class="input-box">
+      <input type="text" placeholder="fill number, digit 3" class="input-number input-number02" />
+    </div>
+  </div>
+
+
+  <h3 class="ui-title"><span>num-pad（无样式输入框，设置小数点后5位）</span></h3>
+
+  <div class="content-box">
+    <input type="text" placeholder="fill number, digit 2(default)" class="input-number-normal" />
+  </div>
+
+
+</div>
+
+<script>
+mc.numPad('.input-number01');
+
+mc.numPad('.input-number02', {
+  digit: 3,
+  callback: function(value, isNumber) {
+    console.log(value, isNumber);
+  }
+});
+
+mc.numPad('.input-number-normal', {
+  digit: 5,
+  border: '1px solid red',
+  callback: function(value) {
+    console.log(value);
+  }
+});
+</script>
+</body>
+</html>
