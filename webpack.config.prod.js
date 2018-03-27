@@ -58,8 +58,13 @@ var prodConfig = {
       },
 
       {
-        test: /\.(png|jpg|gif|eot|svg|ttf|woff)$/,
+        test: /\.(png|jpg|gif)$/,
         loader: 'url-loader?limit=8192&name=images/[name].[ext]?[hash:8]'
+　　　},
+
+      {
+        test: /\.(eot|svg|ttf|woff)$/,
+        loader: 'url-loader?limit=8192&name=font/[name].[ext]?[hash:8]'
 　　　},
 
       {
