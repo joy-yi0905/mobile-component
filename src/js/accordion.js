@@ -1,9 +1,9 @@
 export default function() {
-  $(document).on('click', '.accordion-box .accordion-item', function() {
+  $(document).on('click', '.accordion-box .accordion-item .accordion-item-hd', function() {
 
-    var _this = $(this),
-      accordion = _this.siblings('.accordion-item'),
-      parent = _this.parent('.accordion-box');
+    var accordionItem = $(this).parent(),
+      accordion = accordionItem.siblings('.accordion-item'),
+      parent = accordionItem.parent('.accordion-box');
 
     var iconClass = '.accordion-item-hd .icon';
 
@@ -11,11 +11,11 @@ export default function() {
       accordion.removeClass('accordion-item-unfold').find(iconClass).removeClass('icon-fold').addClass('icon-unfold');
     }
 
-    _this
+    accordionItem
     .find(iconClass)
-    .attr('class', 'icon icon-' + (!_this.hasClass('accordion-item-unfold') ? 'fold' : 'unfold'));
+    .attr('class', 'icon icon-' + (!accordionItem.hasClass('accordion-item-unfold') ? 'fold' : 'unfold'));
 
-    _this.toggleClass('accordion-item-unfold');
+    accordionItem.toggleClass('accordion-item-unfold');
 
   });
 }
