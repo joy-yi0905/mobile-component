@@ -15,7 +15,7 @@
   input[type="text"],
   input[type="password"],
   select {
-    height: 22px;
+    height: 25px;
   }
   select {
     padding-left: 10px;
@@ -80,13 +80,10 @@
         .align-items(center);
       }
       .key {
-        width: 20%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        width: 4em;
       }
       .val {
-        width: 80%;
+        width: calc(~"100% - 4em");
         padding-left: 10px;
         box-sizing: border-box;
       }
@@ -95,10 +92,10 @@
       margin-right: -10px;
     }
     .button-verification-code {
-      height: 47px;
+      height: 46px;
       margin-right: -10px;
       margin-bottom: 0;
-      line-height: 47px;
+      line-height: 46px;
       white-space: nowrap;
     }
     .from-label {
