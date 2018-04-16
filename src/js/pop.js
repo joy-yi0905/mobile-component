@@ -22,12 +22,14 @@ let showMask = (isTransparent) => {
   }, 0);
 };
 
-let hideMask = (isDelay) => {
+let hideMask = (callback) => {
   $('.pop-mask').removeClass('pop-mask-in pop-mask-transparent');
 
   setTimeout(() => {
     $('.pop-mask').remove();
-  }, isDelay ? 0 : 300);
+
+    func.isFunction(callback) && callback();
+  }, 300);
 };
 
 let toast = (text, callback) => {
@@ -50,7 +52,7 @@ let toast = (text, callback) => {
 
   setTimeout(() => {
     $('.pop-toast').remove();
-    hideMask(true);
+    hideMask();
     func.isFunction(callback) && callback();
   }, 3000);
 };
@@ -71,9 +73,9 @@ let showLoader = (text) => {
   showMask(true);
 };
 
-let hideLoader = () => {
+let hideLoader = (callback) => {
   $('.pop-loading').remove();
-  hideMask(true);
+  hideMask(callback);
 };
 
 let createDiglog = (params) => {

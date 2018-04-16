@@ -16,6 +16,10 @@
     <p><a href="javascript:;" class="button button-loader">显示loader</a></p>
   </div>
 
+  <div class="content-box">
+    <p><a href="javascript:;" class="button button-loader-callback">加载loader后回调</a></p>
+  </div>
+
   <!-- <div class="pop-mask pop-mask-in pop-mask-transparent"></div>
 
   <div class="pop-loading">
@@ -34,6 +38,21 @@ $('.button-loader').on('click', function() {
 
   setTimeout(function () {
     mc.hideLoader();
+  }, 2000);
+});
+
+$('.button-loader-callback').on('click', function() {
+  mc.showLoader();
+
+  setTimeout(function () {
+
+    mc.hideLoader(function() {
+      mc.showDialog({
+        title: 'Lorem Ipsum',
+        text: 'Lorem Ipsum，也称乱数假文或者哑元文本， 是印刷及排版领域所常用的虚拟文字。'
+      });
+    });
+
   }, 2000);
 });
 </script>

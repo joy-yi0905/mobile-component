@@ -1,26 +1,29 @@
-.toolbar {
-  display: -webkit-box;
-  display: flex;
+.tool-bar {
+  .flex();
+  .justify-content(space-between);
+  .align-items(center);
   min-height: 30px;
   padding: 5px 0;
   background: #eee;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-  -webkit-align-items: center;
+
   .item {
-    text-align: center;
     flex: 1;
+    text-align: center;
+
     &.active {
       a {
         color: @activeColor;
       }
     }
+
     a {
       display: block;
+
       .icon {
         display: block;
         font-size: 22px;
         line-height: 1;
+
         .badge {
           position: absolute;
           left: 50%;
