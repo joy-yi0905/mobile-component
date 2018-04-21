@@ -119,6 +119,8 @@ let createDiglog = (params) => {
 
   setTimeout(() => {
     dialogEle.addClass('pop-dialog-in');
+
+    func.isFunction(params.callback) && params.callback();
   }, 0);
 
   showMask();
@@ -203,6 +205,8 @@ let createPopup = (params, direction) => {
 
   setTimeout(() => {
     popupEle.addClass('pop-popup-in');
+
+    func.isFunction(params.callback) && params.callback();
   }, 0);
 
   showMask();
