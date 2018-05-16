@@ -6,27 +6,25 @@ let popText = {
   cancel: '取消'
 };
 
-let createMask = () => {
-  let maskEle = $('<div class="pop-mask">');
-
-  $('.pop-mask').remove();
+let createMask = (isTransparent) => {
+  let maskEle = $('<div class="pop-mask '+ (isTransparent ? 'pop-mask-transparent' : '') +'">');
 
   maskEle.appendTo('body');
 };
 
 let showMask = (isTransparent) => {
-  createMask();
+  createMask(isTransparent);
 
   setTimeout(() => {
-    $('.pop-mask').addClass(isTransparent ? 'pop-mask-in pop-mask-transparent' : 'pop-mask-in');
+    $('.pop-mask').addClass('pop-mask-in');
   }, 0);
 };
 
-let hideMask = (callback) => {
-  $('.pop-mask').removeClass('pop-mask-in pop-mask-transparent');
+let hideMask = (isTransparent, callback) => {
+  $(isTransparent ? '.pop-mask-transparent' : '.pop-mask').removeClass('pop-mask-in');
 
   setTimeout(() => {
-    $('.pop-mask').remove();
+    $(isTransparent ? '.pop-mask-transparent' : '.pop-mask').remove();
 
     func.isFunction(callback) && callback();
   }, 300);
@@ -52,7 +50,7 @@ let toast = (text, callback) => {
 
   setTimeout(() => {
     $('.pop-toast').remove();
-    hideMask();
+    hideMask(true);
     func.isFunction(callback) && callback();
   }, 3000);
 };
@@ -75,7 +73,7 @@ let showLoader = (text) => {
 
 let hideLoader = (callback) => {
   $('.pop-loading').remove();
-  hideMask(callback);
+  hideMask(true, callback);
 };
 
 let createDiglog = (params) => {
