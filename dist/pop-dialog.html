@@ -16,6 +16,7 @@
     <p><a href="javascript:;" class="button button-dialog-content">显示dialog-内容</a></p>
     <p><a href="javascript:;" class="button button-dialog-title-content">显示dialog-标题+内容</a></p>
     <p><a href="javascript:;" class="button button-dialog-button">显示dialog-自定义按钮</a></p>
+    <p><a href="javascript:;" class="button button-dialog-button-no">显示dialog-没有按钮-可关闭</a></p>
   </div>
 
   <!-- <div class="pop-mask pop-mask-in"></div>
@@ -75,6 +76,14 @@ $('.button-dialog-button').on('click', function() {
   });
 });
 
+$('.button-dialog-button-no').on('click', function() {
+  mc.showDialog({
+    title: 'Lorem Ipsum',
+    text: 'Lorem Ipsum，也称乱数假文或者哑元文本， 是印刷及排版领域所常用的虚拟文字。',
+    button: 'none',
+    close: true
+  });
+});
 
 </script>
 </body>

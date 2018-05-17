@@ -81,7 +81,8 @@ let createDiglog = (params) => {
     dialogTop,
     dialogMain,
     dialogExtra,
-    buttonHtml = '';
+    buttonHtml = '',
+    close = '';
 
   dialogTop =
     params.title ?
@@ -96,9 +97,15 @@ let createDiglog = (params) => {
         ${params.text}
       </div>`;
 
-  $.each(params.button, (index, item) => {
-    buttonHtml += `<a href="javascript:;" class="button button-big">${item.text}</a>`;
-  });
+  if (params.button.length) {
+    $.each(params.button, (index, item) => {
+      buttonHtml += `<a href="javascript:;" class="button button-big">${item.text}</a>`;
+    });
+  }
+
+  if (params.close) {
+    close = '<a class="btn-close" href="javascript:;"><i class="icon icon-cancel"></i></a>';
+  }
 
   dialogExtra =
     `<div class="button-row button-row-round">
@@ -112,7 +119,8 @@ let createDiglog = (params) => {
     </div>
     <div class="pop-dialog-extra">
       ${dialogExtra}
-    </div>`
+    </div>
+    ${close}`
   ).appendTo('body');
 
   setTimeout(() => {
@@ -128,6 +136,10 @@ let createDiglog = (params) => {
 
     func.isFunction(params.button[index]['click']) && params.button[index]['click']();
   });
+
+  $('.pop-dialog .btn-close').on('click', () => {
+    hideDialog();
+  });
 };
 
 let showDialog = (params) => {
@@ -140,7 +152,11 @@ let showDialog = (params) => {
     param.button = [{text: popText.confirm, click: hideDialog}];
   } else {
     if (!func.isArray(param.button)) {
-      param.button = [{text: popText.confirm, click: hideDialog}];
+      if (param.button === 'none') {
+        param.button= [];
+      } else {
+        param.button = [{text: popText.confirm, click: hideDialog}];
+      }
     }
   }
 
@@ -167,7 +183,8 @@ let createPopup = (params, direction) => {
     popupTop,
     popupMain,
     popupExtra,
-    buttonHtml = '';
+    buttonHtml = '',
+    close = '';
 
   popupTop =
     params.title ?
@@ -182,9 +199,15 @@ let createPopup = (params, direction) => {
         ${params.text}
       </div>`;
 
-  $.each(params.button, (index, item) => {
-    buttonHtml += `<a href="javascript:;" class="button button-big">${item.text}</a>`;
-  });
+  if (params.button.length) {
+    $.each(params.button, (index, item) => {
+      buttonHtml += `<a href="javascript:;" class="button button-big">${item.text}</a>`;
+    });
+  }
+
+  if (params.close) {
+    close = '<a class="btn-close" href="javascript:;"><i class="icon icon-cancel"></i></a>';
+  }
 
   popupExtra =
     `<div class="button-row">
@@ -195,10 +218,12 @@ let createPopup = (params, direction) => {
     `<div class="pop-popup-content">
       ${popupTop}
       ${popupMain}
+      ${close}
     </div>
     <div class="pop-popup-extra">
       ${popupExtra}
-    </div>`
+    </div>
+    `
   ).appendTo('body');
 
   setTimeout(() => {
@@ -214,6 +239,10 @@ let createPopup = (params, direction) => {
 
     func.isFunction(params.button[index]['click']) && params.button[index]['click']();
   });
+
+  $('.pop-popup .btn-close').on('click', () => {
+    hidePopup();
+  });
 };
 
 let showPopup = (params, direction) => {
@@ -226,7 +255,11 @@ let showPopup = (params, direction) => {
     param.button = [{text: popText.confirm, click: hidePopup}];
   } else {
     if (!func.isArray(param.button)) {
-      param.button = [{text: popText.confirm, click: hidePopup}];
+      if (param.button === 'none') {
+        param.button= []; 
+      } else {
+        param.button = [{text: popText.confirm, click: hidePopup}];
+      }
     }
   }
 
