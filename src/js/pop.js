@@ -1,5 +1,4 @@
 import * as func from './func';
-import $ from 'n-zepto';
 
 let popText = {
   confirm: '确定',
@@ -256,7 +255,7 @@ let showPopup = (params, direction) => {
   } else {
     if (!func.isArray(param.button)) {
       if (param.button === 'none') {
-        param.button= []; 
+        param.button= [];
       } else {
         param.button = [{text: popText.confirm, click: hidePopup}];
       }

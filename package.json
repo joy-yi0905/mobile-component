@@ -32,7 +32,6 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "n-zepto": "^1.2.0",
-    "zepto": "^1.2.0"
+    "n-zepto": "^1.2.0"
   }
 }
