@@ -10,4 +10,4 @@
 
 ### 演示页
 
-- [组件](http://joy-yi0905.github.io/mobile-component/dist/index.html)
+[demo](https://yi-jy.com/mobile-component/dist/index.html)

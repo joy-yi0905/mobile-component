@@ -1,5 +1,7 @@
 import './less/mc.less';
 
+import Zepto from 'n-zepto';
+
 import {
   toast,
   showLoader,
