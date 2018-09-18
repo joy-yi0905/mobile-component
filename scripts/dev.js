@@ -14,6 +14,5 @@ const server = new WebpackDevServer(compiler, {
 server.listen(8080);
 
 compiler.hooks.done.tap('load', () => {
-
-  console.log('启动成功...')
+  console.log('Project is runing at http://localhost:8080/ ...')
 });
